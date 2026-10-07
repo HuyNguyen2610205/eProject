@@ -1,98 +1,70 @@
-## ==========================================
-## Standard .gitignore for .NET & Visual Studio
-## ==========================================
-
-# Build results
-[Dd]ebug/
-[Dd]ebugPublic/
-[Rr]elease/
-[Rr]eleases/
-x64/
-x86/
-[Ww][Ii][Nn]32/
-[Aa][Rr][Mm]/
-[Aa][Rr][Mm]64/
-bld/
-[Bb]in/
-[Oo]bj/
-[Ll]og/
-[Ll]ogs/
-
-# Visual Studio files
+# =========================
+# .NET
+# =========================
+bin/
+obj/
 .vs/
+.vscode/
 *.user
 *.userosscache
-*.sln.docstates
 *.suo
-*.userprefs
-*.dbmdl
-*.jfm
-
-# Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/
-
-# JetBrains Rider
-.idea/
-*.sln.iml
-
-# User-specific & local environment files
-*.local.json
-appsettings*.local.json
-secrets.json
-*.env
-*.env.local
-*.env.*.local
-
-# Testing & Coverage results
-[Tt]est[Rr]esult*/
-[Bb]uild[Ll]og.*
-*.visualstudio.osx.runsettings
-*.trx
-*.coverage
-*.coveragexml
-coverage/
-
-# NuGet Packages
 *.nupkg
-*.snupkg
-**/packages/*
-!**/packages/build/
-*.nuget.props
-*.nuget.targets
-project.lock.json
-project.assets.json
+TestResults/
 
-# Microsoft Azure & Publish profiles
-*.azurePubxml
-*.pubxml
-*.publishproj
+# ASP.NET Core
+appsettings.Development.json
+appsettings.Local.json
 
-# ==========================================
-# Frontend / Node.js
-# ==========================================
+# =========================
+# Node
+# =========================
 node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
 dist/
+build/
 .next/
 .nuxt/
-.cache/
+coverage/
 
-# ==========================================
-# OS Specific Files
-# ==========================================
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-$RECYCLE.BIN/
+# Environment
+.env
+.env.*
+!.env.example
+
+# =========================
+# IDE
+# =========================
+.idea/
+*.swp
+*.swo
+
+# =========================
+# OS
+# =========================
 .DS_Store
-.Spotlight-V100
-.Trashes
+Thumbs.db
 
+# =========================
+# Logs
+# =========================
+*.log
+logs/
+
+# =========================
+# Docker
+# =========================
+docker-data/
+
+# =========================
+# Secrets / Certificates
+# =========================
+*.pfx
+*.pem
+*.key
+*.crt
+
+# =========================
+# Database
+# =========================
+*.bak
+*.mdf
+*.ldf
