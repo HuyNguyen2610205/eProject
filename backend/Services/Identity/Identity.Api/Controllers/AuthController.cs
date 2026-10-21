@@ -64,13 +64,47 @@ public class AuthController : ControllerBase
         return Ok(result);
     }
 
+    [HttpPost("logout")]
+    [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Logout([FromBody] LogoutRequest request)
+    {
+        var ipAddress = HttpContext.Connection.RemoteIpAddress?.ToString();
+        var result = await _authService.RevokeTokenAsync(request.RefreshToken, ipAddress);
+
+        if (!result.Success)
+        {
+            return BadRequest(result);
+        }
+
+        return Ok(ApiResponse<bool>.Ok(true, "Đăng xuất thành công."));
+    }
+
+    [HttpPost("logout-all")]
+    [Authorize]
+    [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status401Unauthorized)]
+    public async Task<IActionResult> LogoutAll()
+    {
+        var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier) ?? User.FindFirstValue("sub");
+        if (string.IsNullOrEmpty(userIdStr) || !Guid.TryParse(userIdStr, out var userId))
+        {
+            return Unauthorized(ApiResponse<bool>.Fail("Không xác định được danh tính người dùng."));
+        }
+
+        var ipAddress = HttpContext.Connection.RemoteIpAddress?.ToString();
+        var result = await _authService.RevokeAllTokensAsync(userId, ipAddress);
+
+        return Ok(result);
+    }
+
     [HttpPost("revoke-token")]
     [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> RevokeToken([FromBody] string refreshToken)
+    public async Task<IActionResult> RevokeToken([FromBody] LogoutRequest request)
     {
         var ipAddress = HttpContext.Connection.RemoteIpAddress?.ToString();
-        var result = await _authService.RevokeTokenAsync(refreshToken, ipAddress);
+        var result = await _authService.RevokeTokenAsync(request.RefreshToken, ipAddress);
 
         if (!result.Success)
         {
@@ -90,13 +124,15 @@ public class AuthController : ControllerBase
         var email = User.FindFirstValue(ClaimTypes.Email) ?? User.FindFirstValue("email");
         var name = User.FindFirstValue("name");
         var roles = User.FindAll(ClaimTypes.Role).Select(c => c.Value).ToList();
+        var permissions = User.FindAll("permission").Select(c => c.Value).ToList();
 
         return Ok(ApiResponse<object>.Ok(new
         {
             UserId = userId,
             Email = email,
             FullName = name,
-            Roles = roles
+            Roles = roles,
+            Permissions = permissions
         }, "Lấy thông tin cá nhân thành công"));
     }
 }

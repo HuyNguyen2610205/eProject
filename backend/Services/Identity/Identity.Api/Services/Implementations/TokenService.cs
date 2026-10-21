@@ -19,7 +19,7 @@ public class TokenService : ITokenService
         _jwtOptions = jwtOptions.Value;
     }
 
-    public Task<(string accessToken, DateTime expiresAt, string jti)> GenerateAccessTokenAsync(ApplicationUser user, IList<string> roles)
+    public Task<(string accessToken, DateTime expiresAt, string jti)> GenerateAccessTokenAsync(ApplicationUser user, IList<string> roles, IEnumerable<string>? permissions = null)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.UTF8.GetBytes(_jwtOptions.Secret);
@@ -37,6 +37,14 @@ public class TokenService : ITokenService
         foreach (var role in roles)
         {
             claims.Add(new Claim(ClaimTypes.Role, role));
+        }
+
+        if (permissions != null)
+        {
+            foreach (var permission in permissions)
+            {
+                claims.Add(new Claim("permission", permission));
+            }
         }
 
         var tokenDescriptor = new SecurityTokenDescriptor

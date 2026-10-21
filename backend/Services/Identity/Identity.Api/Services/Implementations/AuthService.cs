@@ -38,6 +38,7 @@ public class AuthService : IAuthService
         var existingUser = await _userManager.FindByEmailAsync(request.Email);
         if (existingUser != null)
         {
+            _logger.LogWarning("Đăng ký thất bại: Email {Email} đã tồn tại trong hệ thống.", request.Email);
             return ApiResponse<AuthResponse>.Fail("Email này đã được sử dụng.");
         }
 
@@ -57,6 +58,7 @@ public class AuthService : IAuthService
         if (!result.Succeeded)
         {
             var errors = result.Errors.Select(e => e.Description).ToList();
+            _logger.LogWarning("Đăng ký tài khoản cho {Email} thất bại: {Errors}", request.Email, string.Join("; ", errors));
             return ApiResponse<AuthResponse>.Fail("Đăng ký tài khoản thất bại.", errors);
         }
 
@@ -70,11 +72,14 @@ public class AuthService : IAuthService
 
         // 4. Sinh cặp JWT Access Token và Refresh Token
         var roles = new List<string> { defaultRole };
-        var (accessToken, accessExpiresAt, jti) = await _tokenService.GenerateAccessTokenAsync(user, roles);
+        var permissions = await GetUserPermissionsAsync(user);
+        var (accessToken, accessExpiresAt, jti) = await _tokenService.GenerateAccessTokenAsync(user, roles, permissions);
         var refreshToken = _tokenService.GenerateRefreshToken(user.Id, jti);
 
         _dbContext.RefreshTokens.Add(refreshToken);
         await _dbContext.SaveChangesAsync();
+
+        _logger.LogInformation("Người dùng {Email} (UserId: {UserId}) đã đăng ký tài khoản thành công.", user.Email, user.Id);
 
         var response = new AuthResponse
         {
@@ -82,6 +87,7 @@ public class AuthService : IAuthService
             Email = user.Email,
             FullName = user.FullName,
             Roles = roles,
+            Permissions = permissions,
             AccessToken = accessToken,
             RefreshToken = refreshToken.Token,
             AccessTokenExpiresAt = accessExpiresAt,
@@ -97,12 +103,14 @@ public class AuthService : IAuthService
         var user = await _userManager.FindByEmailAsync(request.Email);
         if (user == null)
         {
+            _logger.LogWarning("Đăng nhập thất bại: Tài khoản {Email} không tồn tại. IP: {IpAddress}", request.Email, ipAddress);
             return ApiResponse<AuthResponse>.Fail("Email hoặc mật khẩu không chính xác.");
         }
 
         // 2. Kiểm tra tài khoản có bị khóa không
         if (!user.IsActive)
         {
+            _logger.LogWarning("Đăng nhập thất bại: Tài khoản {Email} (UserId: {UserId}) đã bị vô hiệu hóa. IP: {IpAddress}", user.Email, user.Id, ipAddress);
             return ApiResponse<AuthResponse>.Fail("Tài khoản của bạn đã bị vô hiệu hóa.");
         }
 
@@ -110,18 +118,22 @@ public class AuthService : IAuthService
         var isPasswordValid = await _userManager.CheckPasswordAsync(user, request.Password);
         if (!isPasswordValid)
         {
+            _logger.LogWarning("Đăng nhập thất bại: Mật khẩu không chính xác cho tài khoản {Email}. IP: {IpAddress}", request.Email, ipAddress);
             return ApiResponse<AuthResponse>.Fail("Email hoặc mật khẩu không chính xác.");
         }
 
-        // 4. Lấy danh sách Roles
+        // 4. Lấy danh sách Roles và Permissions hiệu lực
         var roles = await _userManager.GetRolesAsync(user);
+        var permissions = await GetUserPermissionsAsync(user);
 
         // 5. Sinh JWT Access Token & Refresh Token
-        var (accessToken, accessExpiresAt, jti) = await _tokenService.GenerateAccessTokenAsync(user, roles);
+        var (accessToken, accessExpiresAt, jti) = await _tokenService.GenerateAccessTokenAsync(user, roles, permissions);
         var refreshToken = _tokenService.GenerateRefreshToken(user.Id, jti, ipAddress);
 
         _dbContext.RefreshTokens.Add(refreshToken);
         await _dbContext.SaveChangesAsync();
+
+        _logger.LogInformation("Người dùng {Email} (UserId: {UserId}) đã đăng nhập thành công từ IP {IpAddress}.", user.Email, user.Id, ipAddress);
 
         var response = new AuthResponse
         {
@@ -129,6 +141,7 @@ public class AuthService : IAuthService
             Email = user.Email ?? string.Empty,
             FullName = user.FullName ?? string.Empty,
             Roles = roles.ToList(),
+            Permissions = permissions,
             AccessToken = accessToken,
             RefreshToken = refreshToken.Token,
             AccessTokenExpiresAt = accessExpiresAt,
@@ -197,7 +210,8 @@ public class AuthService : IAuthService
 
         // 5. Sinh cặp Token mới
         var roles = await _userManager.GetRolesAsync(user);
-        var (newAccessToken, accessExpiresAt, newJti) = await _tokenService.GenerateAccessTokenAsync(user, roles);
+        var permissions = await GetUserPermissionsAsync(user);
+        var (newAccessToken, accessExpiresAt, newJti) = await _tokenService.GenerateAccessTokenAsync(user, roles, permissions);
         var newRefreshToken = _tokenService.GenerateRefreshToken(user.Id, newJti, ipAddress);
 
         savedRefreshToken.ReplacedByToken = newRefreshToken.Token;
@@ -211,6 +225,7 @@ public class AuthService : IAuthService
             Email = user.Email ?? string.Empty,
             FullName = user.FullName ?? string.Empty,
             Roles = roles.ToList(),
+            Permissions = permissions,
             AccessToken = newAccessToken,
             RefreshToken = newRefreshToken.Token,
             AccessTokenExpiresAt = accessExpiresAt,
@@ -225,11 +240,13 @@ public class AuthService : IAuthService
         var token = await _dbContext.RefreshTokens.FirstOrDefaultAsync(r => r.Token == refreshToken);
         if (token == null)
         {
+            _logger.LogWarning("Thu hồi token thất bại: RefreshToken không tồn tại. IP: {IpAddress}", ipAddress);
             return ApiResponse<bool>.Fail("RefreshToken không tồn tại.");
         }
 
         if (!token.IsActive)
         {
+            _logger.LogWarning("Thu hồi token thất bại: RefreshToken của UserId {UserId} đã hết hạn hoặc bị thu hồi trước đó. IP: {IpAddress}", token.UserId, ipAddress);
             return ApiResponse<bool>.Fail("RefreshToken không còn hoạt động hoặc đã bị thu hồi.");
         }
 
@@ -238,6 +255,69 @@ public class AuthService : IAuthService
 
         await _dbContext.SaveChangesAsync();
 
+        _logger.LogInformation("Người dùng (UserId: {UserId}) đã đăng xuất/thu hồi RefreshToken thành công từ IP {IpAddress}.", token.UserId, ipAddress);
+
         return ApiResponse<bool>.Ok(true, "Thu hồi Token thành công.");
+    }
+
+    public async Task<ApiResponse<bool>> RevokeAllTokensAsync(Guid userId, string? ipAddress = null)
+    {
+        var activeTokens = await _dbContext.RefreshTokens
+            .Where(r => r.UserId == userId && !r.IsRevoked && !r.IsUsed && r.ExpiryDate > DateTime.UtcNow)
+            .ToListAsync();
+
+        if (activeTokens.Count == 0)
+        {
+            _logger.LogInformation("Yêu cầu Logout-all của UserId {UserId} hoàn tất: Không có phiên làm việc nào đang hoạt động.", userId);
+            return ApiResponse<bool>.Ok(true, "Không có phiên đăng nhập nào đang hoạt động.");
+        }
+
+        var utcNow = DateTime.UtcNow;
+        foreach (var token in activeTokens)
+        {
+            token.IsRevoked = true;
+            token.RevokedAt = utcNow;
+        }
+
+        await _dbContext.SaveChangesAsync();
+
+        _logger.LogInformation("Người dùng (UserId: {UserId}) đã đăng xuất khỏi toàn bộ {Count} thiết bị từ IP {IpAddress}.", userId, activeTokens.Count, ipAddress);
+
+        return ApiResponse<bool>.Ok(true, $"Đã đăng xuất thành công khỏi tất cả {activeTokens.Count} thiết bị.");
+    }
+
+    private async Task<List<string>> GetUserPermissionsAsync(ApplicationUser user)
+    {
+        // 1. Lấy danh sách Roles của user
+        var userRoles = await _userManager.GetRolesAsync(user);
+        var roleIds = await _roleManager.Roles
+            .Where(r => userRoles.Contains(r.Name!))
+            .Select(r => r.Id)
+            .ToListAsync();
+
+        // 2. Lấy permissions từ roles
+        var rolePermissions = await _dbContext.RolePermissions
+            .Where(rp => roleIds.Contains(rp.RoleId))
+            .Select(rp => rp.Permission.Code)
+            .Distinct()
+            .ToListAsync();
+
+        // 3. Lấy user permissions (override)
+        var userPermissions = await _dbContext.UserPermissions
+            .Include(up => up.Permission)
+            .Where(up => up.UserId == user.Id)
+            .ToListAsync();
+
+        var grantedUserPerms = userPermissions.Where(up => up.IsGranted).Select(up => up.Permission.Code);
+        var revokedUserPerms = userPermissions.Where(up => !up.IsGranted).Select(up => up.Permission.Code).ToHashSet();
+
+        // 4. Tổng hợp quyền hiệu lực: (Role Perms + Granted Perms) - Revoked Perms
+        var finalPermissions = rolePermissions
+            .Union(grantedUserPerms)
+            .Where(p => !revokedUserPerms.Contains(p))
+            .Distinct()
+            .ToList();
+
+        return finalPermissions;
     }
 }

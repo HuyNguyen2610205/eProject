@@ -12,4 +12,6 @@ public class ApplicationRole : IdentityRole<Guid>
     {
         Description = description;
     }
+
+    public virtual ICollection<RolePermission> RolePermissions { get; set; } = new List<RolePermission>();
 }

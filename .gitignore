@@ -68,3 +68,11 @@ docker-data/
 *.bak
 *.mdf
 *.ldf
+
+
+# Bỏ qua thư mục agent / skills và file lock đi kèm
+.agents/
+skills-lock.json
+
+# Bỏ qua codegraph
+.codegraph/
