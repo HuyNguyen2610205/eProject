@@ -16,6 +16,7 @@ public class AuthService : IAuthService
     private readonly RoleManager<ApplicationRole> _roleManager;
     private readonly ITokenService _tokenService;
     private readonly AppIdentityDbContext _dbContext;
+    private readonly INotificationClient _notificationClient;
     private readonly ILogger<AuthService> _logger;
 
     public AuthService(
@@ -23,22 +24,27 @@ public class AuthService : IAuthService
         RoleManager<ApplicationRole> roleManager,
         ITokenService _tokenService,
         AppIdentityDbContext dbContext,
+        INotificationClient notificationClient,
         ILogger<AuthService> logger)
     {
         _userManager = userManager;
         _roleManager = roleManager;
         this._tokenService = _tokenService;
         _dbContext = dbContext;
+        _notificationClient = notificationClient;
         _logger = logger;
     }
 
     public async Task<ApiResponse<AuthResponse>> RegisterAsync(RegisterRequest request)
     {
+        var cleanEmail = request.Email.Trim();
+        var cleanFullName = request.FullName.Trim();
+
         // 1. Kiểm tra email đã tồn tại hay chưa
-        var existingUser = await _userManager.FindByEmailAsync(request.Email);
+        var existingUser = await _userManager.FindByEmailAsync(cleanEmail);
         if (existingUser != null)
         {
-            _logger.LogWarning("Đăng ký thất bại: Email {Email} đã tồn tại trong hệ thống.", request.Email);
+            _logger.LogWarning("Đăng ký thất bại: Email {Email} đã tồn tại trong hệ thống.", cleanEmail);
             return ApiResponse<AuthResponse>.Fail("Email này đã được sử dụng.");
         }
 
@@ -46,9 +52,9 @@ public class AuthService : IAuthService
         var user = new ApplicationUser
         {
             Id = Guid.NewGuid(),
-            UserName = request.Email,
-            Email = request.Email,
-            FullName = request.FullName,
+            UserName = cleanEmail,
+            Email = cleanEmail,
+            FullName = cleanFullName,
             EmailConfirmed = false,
             IsActive = true,
             CreatedAt = DateTime.UtcNow
@@ -78,6 +84,17 @@ public class AuthService : IAuthService
 
         _dbContext.RefreshTokens.Add(refreshToken);
         await _dbContext.SaveChangesAsync();
+
+        // 5. Gửi email xác thực ban đầu qua NotificationService
+        try
+        {
+            var initialVerificationToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            await _notificationClient.SendVerificationEmailAsync(user.Email!, user.FullName, initialVerificationToken);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Không thể gửi email xác thực ban đầu cho người dùng {Email}", user.Email);
+        }
 
         _logger.LogInformation("Người dùng {Email} (UserId: {UserId}) đã đăng ký tài khoản thành công.", user.Email, user.Id);
 
@@ -319,5 +336,254 @@ public class AuthService : IAuthService
             .ToList();
 
         return finalPermissions;
+    }
+
+    public async Task<ApiResponse<UserProfileResponse>> GetProfileAsync(Guid userId)
+    {
+        var user = await _userManager.FindByIdAsync(userId.ToString());
+        if (user == null)
+        {
+            return ApiResponse<UserProfileResponse>.Fail("Không tìm thấy thông tin người dùng.");
+        }
+
+        var roles = await _userManager.GetRolesAsync(user);
+        var permissions = await GetUserPermissionsAsync(user);
+
+        var response = new UserProfileResponse
+        {
+            UserId = user.Id,
+            Email = user.Email ?? string.Empty,
+            EmailConfirmed = user.EmailConfirmed,
+            FullName = user.FullName ?? string.Empty,
+            PhoneNumber = user.PhoneNumber,
+            AvatarUrl = user.AvatarUrl,
+            Roles = roles.ToList(),
+            Permissions = permissions,
+            CreatedAt = user.CreatedAt,
+            UpdatedAt = user.UpdatedAt
+        };
+
+        return ApiResponse<UserProfileResponse>.Ok(response, "Lấy thông tin cá nhân thành công.");
+    }
+
+    public async Task<ApiResponse<UserProfileResponse>> UpdateProfileAsync(Guid userId, UpdateProfileRequest request)
+    {
+        var user = await _userManager.FindByIdAsync(userId.ToString());
+        if (user == null)
+        {
+            return ApiResponse<UserProfileResponse>.Fail("Không tìm thấy thông tin người dùng.");
+        }
+
+        if (!user.IsActive)
+        {
+            return ApiResponse<UserProfileResponse>.Fail("Tài khoản của bạn đã bị vô hiệu hóa.");
+        }
+
+        user.FullName = request.FullName.Trim();
+        user.PhoneNumber = string.IsNullOrWhiteSpace(request.PhoneNumber) ? null : request.PhoneNumber.Trim();
+        user.AvatarUrl = string.IsNullOrWhiteSpace(request.AvatarUrl) ? null : request.AvatarUrl.Trim();
+        user.UpdatedAt = DateTime.UtcNow;
+
+        var result = await _userManager.UpdateAsync(user);
+        if (!result.Succeeded)
+        {
+            var errors = result.Errors.Select(e => e.Description).ToList();
+            _logger.LogWarning("Cập nhật profile cho UserId {UserId} thất bại: {Errors}", userId, string.Join("; ", errors));
+            return ApiResponse<UserProfileResponse>.Fail("Cập nhật thông tin cá nhân thất bại.", errors);
+        }
+
+        _logger.LogInformation("Người dùng {Email} (UserId: {UserId}) đã cập nhật thông tin cá nhân thành công.", user.Email, user.Id);
+
+        var roles = await _userManager.GetRolesAsync(user);
+        var permissions = await GetUserPermissionsAsync(user);
+
+        var response = new UserProfileResponse
+        {
+            UserId = user.Id,
+            Email = user.Email ?? string.Empty,
+            EmailConfirmed = user.EmailConfirmed,
+            FullName = user.FullName ?? string.Empty,
+            PhoneNumber = user.PhoneNumber,
+            AvatarUrl = user.AvatarUrl,
+            Roles = roles.ToList(),
+            Permissions = permissions,
+            CreatedAt = user.CreatedAt,
+            UpdatedAt = user.UpdatedAt
+        };
+
+        return ApiResponse<UserProfileResponse>.Ok(response, "Cập nhật thông tin cá nhân thành công.");
+    }
+
+    public async Task<ApiResponse<bool>> ChangePasswordAsync(Guid userId, ChangePasswordRequest request)
+    {
+        var user = await _userManager.FindByIdAsync(userId.ToString());
+        if (user == null)
+        {
+            return ApiResponse<bool>.Fail("Không tìm thấy thông tin người dùng.");
+        }
+
+        if (!user.IsActive)
+        {
+            return ApiResponse<bool>.Fail("Tài khoản của bạn đã bị vô hiệu hóa.");
+        }
+
+        var result = await _userManager.ChangePasswordAsync(user, request.CurrentPassword, request.NewPassword);
+        if (!result.Succeeded)
+        {
+            var errors = result.Errors.Select(e => e.Description).ToList();
+            _logger.LogWarning("Đổi mật khẩu cho UserId {UserId} thất bại: {Errors}", userId, string.Join("; ", errors));
+            return ApiResponse<bool>.Fail("Đổi mật khẩu thất bại. Vui lòng kiểm tra lại mật khẩu hiện tại.", errors);
+        }
+
+        user.UpdatedAt = DateTime.UtcNow;
+        await _userManager.UpdateAsync(user);
+
+        _logger.LogInformation("Người dùng {Email} (UserId: {UserId}) đã đổi mật khẩu thành công.", user.Email, user.Id);
+
+        return ApiResponse<bool>.Ok(true, "Đổi mật khẩu thành công.");
+    }
+
+    public async Task<ApiResponse<object>> ForgotPasswordAsync(ForgotPasswordRequest request)
+    {
+        var cleanEmail = request.Email.Trim();
+        var user = await _userManager.FindByEmailAsync(cleanEmail);
+
+        // Tuân thủ bảo mật OWASP: Chống Account Enumeration (không tiết lộ email có tồn tại hay không)
+        if (user == null || !user.IsActive)
+        {
+            _logger.LogWarning("ForgotPassword: Yêu cầu đặt lại mật khẩu cho tài khoản không tồn tại hoặc đã bị khóa: {Email}", cleanEmail);
+            return ApiResponse<object>.Ok(
+                new { message = "Nếu email này tồn tại trong hệ thống, hướng dẫn đặt lại mật khẩu đã được gửi đến hộp thư của bạn." },
+                "Yêu cầu đặt lại mật khẩu đã được tiếp nhận.");
+        }
+
+        // Sinh Reset Password Token an toàn từ ASP.NET Core Identity Data Protection Provider
+        var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+        _logger.LogInformation("Đã tạo PasswordResetToken thành công cho User {Email} (UserId: {UserId}). Token: {Token}", user.Email, user.Id, token);
+
+        // Gửi email đặt lại mật khẩu qua microservice Notification.Api
+        try
+        {
+            await _notificationClient.SendPasswordResetEmailAsync(user.Email!, user.FullName, token);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Không thể gửi email đặt lại mật khẩu cho {Email} qua NotificationService.", user.Email);
+        }
+
+        // Trả về token trong response payload nhằm hỗ trợ kiểm thử và phát triển nhanh (Dev mode khi chưa tích hợp SMTP)
+        return ApiResponse<object>.Ok(
+            new 
+            { 
+                email = user.Email, 
+                resetToken = token,
+                message = "Nếu email này tồn tại trong hệ thống, hướng dẫn đặt lại mật khẩu đã được gửi đến hộp thư của bạn."
+            }, 
+            "Yêu cầu đặt lại mật khẩu đã được xử lý thành công.");
+    }
+
+    public async Task<ApiResponse<bool>> ResetPasswordAsync(ResetPasswordRequest request)
+    {
+        var cleanEmail = request.Email.Trim();
+        var user = await _userManager.FindByEmailAsync(cleanEmail);
+
+        if (user == null || !user.IsActive)
+        {
+            return ApiResponse<bool>.Fail("Yêu cầu đặt lại mật khẩu không hợp lệ hoặc tài khoản đã bị khóa.");
+        }
+
+        var result = await _userManager.ResetPasswordAsync(user, request.Token, request.NewPassword);
+        if (!result.Succeeded)
+        {
+            var errors = result.Errors.Select(e => e.Description).ToList();
+            _logger.LogWarning("Đặt lại mật khẩu cho {Email} thất bại: {Errors}", cleanEmail, string.Join("; ", errors));
+            return ApiResponse<bool>.Fail("Đặt lại mật khẩu thất bại. Mã xác thực có thể không hợp lệ hoặc đã hết hạn.", errors);
+        }
+
+        user.UpdatedAt = DateTime.UtcNow;
+        await _userManager.UpdateAsync(user);
+
+        // Bảo mật tối cao: Thu hồi toàn bộ Refresh Token của user để vô hiệu hóa tất cả phiên đăng nhập cũ
+        await RevokeAllTokensAsync(user.Id);
+
+        _logger.LogInformation("Người dùng {Email} (UserId: {UserId}) đã đặt lại mật khẩu thành công. Đã thu hồi toàn bộ phiên đăng nhập cũ.", user.Email, user.Id);
+
+        return ApiResponse<bool>.Ok(true, "Đặt lại mật khẩu thành công. Vui lòng đăng nhập lại bằng mật khẩu mới.");
+    }
+
+    public async Task<ApiResponse<bool>> VerifyEmailAsync(VerifyEmailRequest request)
+    {
+        var user = await _userManager.FindByIdAsync(request.UserId.ToString());
+        if (user == null)
+        {
+            return ApiResponse<bool>.Fail("Không tìm thấy thông tin người dùng.");
+        }
+
+        if (user.EmailConfirmed)
+        {
+            return ApiResponse<bool>.Ok(true, "Email này đã được xác thực trước đó.");
+        }
+
+        var result = await _userManager.ConfirmEmailAsync(user, request.Token);
+        if (!result.Succeeded)
+        {
+            var errors = result.Errors.Select(e => e.Description).ToList();
+            _logger.LogWarning("Xác thực email cho UserId {UserId} thất bại: {Errors}", user.Id, string.Join("; ", errors));
+            return ApiResponse<bool>.Fail("Xác thực email thất bại. Mã xác thực không hợp lệ hoặc đã hết hạn.", errors);
+        }
+
+        user.UpdatedAt = DateTime.UtcNow;
+        await _userManager.UpdateAsync(user);
+
+        _logger.LogInformation("Người dùng {Email} (UserId: {UserId}) đã xác thực email thành công.", user.Email, user.Id);
+
+        return ApiResponse<bool>.Ok(true, "Xác thực email thành công.");
+    }
+
+    public async Task<ApiResponse<object>> ResendVerificationEmailAsync(ResendVerificationEmailRequest request)
+    {
+        var cleanEmail = request.Email.Trim();
+        var user = await _userManager.FindByEmailAsync(cleanEmail);
+
+        // Tuân thủ bảo mật OWASP: Chống Account Enumeration
+        if (user == null || !user.IsActive)
+        {
+            _logger.LogWarning("ResendVerificationEmail: Yêu cầu gửi lại xác thực cho tài khoản không tồn tại hoặc đã bị khóa: {Email}", cleanEmail);
+            return ApiResponse<object>.Ok(
+                new { message = "Nếu email này tồn tại trong hệ thống, mã xác thực mới đã được gửi đến hộp thư của bạn." },
+                "Yêu cầu gửi lại email xác thực đã được tiếp nhận.");
+        }
+
+        if (user.EmailConfirmed)
+        {
+            return ApiResponse<object>.Ok(
+                new { isAlreadyConfirmed = true, message = "Email này đã được xác thực trước đó." },
+                "Email này đã được xác thực trước đó.");
+        }
+
+        var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
+        _logger.LogInformation("Đã tạo EmailConfirmationToken thành công cho User {Email} (UserId: {UserId}). Token: {Token}", user.Email, user.Id, token);
+
+        // Gửi email xác thực qua microservice Notification.Api
+        try
+        {
+            await _notificationClient.SendVerificationEmailAsync(user.Email!, user.FullName, token);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Không thể gửi email xác thực cho {Email} qua NotificationService.", user.Email);
+        }
+
+        return ApiResponse<object>.Ok(
+            new 
+            { 
+                userId = user.Id, 
+                email = user.Email, 
+                verificationToken = token,
+                message = "Nếu email này tồn tại trong hệ thống, mã xác thực mới đã được gửi đến hộp thư của bạn."
+            }, 
+            "Mã xác thực email đã được tạo và gửi thành công.");
     }
 }

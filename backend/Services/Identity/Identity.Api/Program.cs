@@ -47,7 +47,8 @@ builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
     options.Lockout.AllowedForNewUsers = true;
 })
 .AddEntityFrameworkStores<AppIdentityDbContext>()
-.AddDefaultTokenProviders();
+.AddDefaultTokenProviders()
+.AddErrorDescriber<VietnameseIdentityErrorDescriber>();
 
 // 3. Cấu hình JwtOptions & Authentication Middleware
 var jwtSection = builder.Configuration.GetSection(JwtOptions.SectionName);
@@ -108,6 +109,14 @@ builder.Services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IRoleService, RoleService>();
+
+// Đăng ký Typed HttpClient giao tiếp liên microservice với Notification.Api
+var notificationServiceUrl = builder.Configuration["ServiceUrls:NotificationService"] ?? "http://localhost:5121";
+builder.Services.AddHttpClient<INotificationClient, NotificationClient>(client =>
+{
+    client.BaseAddress = new Uri(notificationServiceUrl.TrimEnd('/') + "/");
+    client.Timeout = TimeSpan.FromSeconds(10);
+});
 
 // 5. Cấu hình Controllers & OpenAPI & Chuẩn hóa lỗi Validation
 builder.Services.AddControllers()
