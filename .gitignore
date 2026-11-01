@@ -1,0 +1,78 @@
+# =========================
+# .NET
+# =========================
+bin/
+obj/
+.vs/
+.vscode/
+*.user
+*.userosscache
+*.suo
+*.nupkg
+TestResults/
+
+# ASP.NET Core
+appsettings.Development.json
+appsettings.Local.json
+
+# =========================
+# Node
+# =========================
+node_modules/
+dist/
+build/
+.next/
+.nuxt/
+coverage/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# =========================
+# IDE
+# =========================
+.idea/
+*.swp
+*.swo
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Logs
+# =========================
+*.log
+logs/
+
+# =========================
+# Docker
+# =========================
+docker-data/
+
+# =========================
+# Secrets / Certificates
+# =========================
+*.pfx
+*.pem
+*.key
+*.crt
+
+# =========================
+# Database
+# =========================
+*.bak
+*.mdf
+*.ldf
+
+
+# Bỏ qua thư mục agent / skills và file lock đi kèm
+.agents/
+skills-lock.json
+
+# Bỏ qua codegraph
+.codegraph/

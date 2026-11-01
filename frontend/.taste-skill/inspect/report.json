@@ -1,0 +1,1636 @@
+{
+ "url": "c:\\Users\\HP\\Desktop\\eProject\\frontend\\dispatch-landing-preview.html",
+ "at": "2026-10-26T01:02:33.242Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 3,
+   "filled": [
+    0.75,
+    0.67,
+    0.72
+   ],
+   "motion": {
+    "elements": 1,
+    "css": 1,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 1852,
+     "screens": 2.1,
+     "words": 359,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 1,
+     "sections": 5,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "DISPATCH",
+     "words": 1,
+     "chars": 8,
+     "lines": 1,
+     "size": 96,
+     "vw": 6.7,
+     "font": "Jost",
+     "weight": 900,
+     "tracking": -0.025,
+     "leading": 1,
+     "upper": true,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "left",
+     "widthRatio": 0.4,
+     "top": 132,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "DISPATCH",
+     "words": 1,
+     "lines": 1,
+     "size": 96,
+     "font": "Jost"
+    },
+    "headings": [
+     {
+      "text": "0s",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 60,
+      "vw": 4.2,
+      "font": "Jost",
+      "weight": 900,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.12,
+      "top": 108,
+      "tag": "div",
+      "kind": "heading"
+     },
+     {
+      "text": "1.8ms",
+      "words": 1,
+      "chars": 5,
+      "lines": 1,
+      "size": 60,
+      "vw": 4.2,
+      "font": "Jost",
+      "weight": 900,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.12,
+      "top": 108,
+      "tag": "div",
+      "kind": "heading"
+     },
+     {
+      "text": "DISPATCH",
+      "words": 1,
+      "chars": 8,
+      "lines": 1,
+      "size": 96,
+      "vw": 6.7,
+      "font": "Jost",
+      "weight": 900,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.4,
+      "top": 132,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "GET DISPATCH",
+      "words": 2,
+      "chars": 12,
+      "lines": 1,
+      "size": 48,
+      "vw": 3.3,
+      "font": "Jost",
+      "weight": 900,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.28,
+      "top": 1332,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "TRANSPARENT PRICING",
+      "words": 2,
+      "chars": 19,
+      "lines": 1,
+      "size": 30,
+      "vw": 2.1,
+      "font": "Jost",
+      "weight": 900,
+      "tracking": -0.025,
+      "leading": 1.2,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.42,
+      "top": 1332,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 5,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 2,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Jost",
+       "share": 0.81,
+       "mono": false
+      },
+      {
+       "family": "JetBrains Mono",
+       "share": 0.19,
+       "mono": true
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      12,
+      14,
+      16,
+      18,
+      24,
+      30,
+      48,
+      60,
+      96
+     ],
+     "sizeCount": 9,
+     "notLoaded": [],
+     "body": {
+      "font": "Jost",
+      "size": 16,
+      "leading": 1.63,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 8.1
+     },
+     "measureChars": 47,
+     "max": {
+      "size": 96,
+      "vw": 6.7,
+      "font": "Jost",
+      "text": "DISPATCH"
+     },
+     "monoShare": 0.19,
+     "monoProseShare": 0.12,
+     "monoFamilies": [
+      "JetBrains Mono"
+     ],
+     "monoSamples": [
+      "$ dispatch list --urgent",
+      "ID",
+      "SUMMARY",
+      "BRANCH",
+      "STATE",
+      "#104"
+     ],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.09,
+     "centerShare": 0,
+     "smallText": 1
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#090d0c",
+     "bodyBgHsl": {
+      "h": 165,
+      "s": 0.18,
+      "l": 0.04
+     },
+     "dark": true,
+     "sectionBgs": [],
+     "textColors": [
+      {
+       "color": "#a2b3ad",
+       "share": 0.56
+      },
+      {
+       "color": "#edf3f0",
+       "share": 0.24
+      },
+      {
+       "color": "#b8f946",
+       "share": 0.14
+      },
+      {
+       "color": "#090d0c",
+       "share": 0.04
+      },
+      {
+       "color": "#f87171",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#b8f946",
+      "hsl": {
+       "h": 82,
+       "s": 0.94,
+       "l": 0.63
+      },
+      "fg": "#090d0c"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 1,
+     "radius": 8,
+     "height": 48,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 2,
+     "heroLabels": [
+      "INSTALL BINARY"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 19,
+     "boxRadius": 12,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 4,
+       "iconTopped": false,
+       "rounded": true,
+       "top": 1096
+      }
+     ]
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 3,
+     "fixed": false,
+     "height": 20,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "jetbrains mono",
+     "jost"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 1852,
+    "margins": {
+     "left": 168,
+     "right": 176
+    },
+    "sections": [],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "DISPATCH",
+      "size": 96,
+      "top": 132,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 168,
+      "n": 5
+     },
+     {
+      "x": 849,
+      "n": 4
+     },
+     {
+      "x": 971,
+      "n": 3
+     },
+     {
+      "x": 192,
+      "n": 2
+     },
+     {
+      "x": 460,
+      "n": 2
+     },
+     {
+      "x": 752,
+      "n": 2
+     },
+     {
+      "x": 955,
+      "n": 1
+     },
+     {
+      "x": 1044,
+      "n": 1
+     },
+     {
+      "x": 1093,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 21,
+    "bodySize": 14,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0.08,
+    "voidBox": {
+     "x": 0,
+     "y": 360,
+     "w": 840,
+     "h": 120
+    }
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 3,
+   "filled": [
+    0.83,
+    0.74,
+    0.81
+   ],
+   "motion": {
+    "elements": 1,
+    "css": 1,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 2361,
+     "screens": 2.3,
+     "words": 359,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 1,
+     "sections": 5,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "DISPATCH",
+     "words": 1,
+     "chars": 8,
+     "lines": 1,
+     "size": 96,
+     "vw": 12.5,
+     "font": "Jost",
+     "weight": 900,
+     "tracking": -0.025,
+     "leading": 1,
+     "upper": true,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "left",
+     "widthRatio": 0.4,
+     "top": 132,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "DISPATCH",
+     "words": 1,
+     "lines": 1,
+     "size": 96,
+     "font": "Jost"
+    },
+    "headings": [
+     {
+      "text": "0s",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 60,
+      "vw": 7.8,
+      "font": "Jost",
+      "weight": 900,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.11,
+      "top": 108,
+      "tag": "div",
+      "kind": "heading"
+     },
+     {
+      "text": "1.8ms",
+      "words": 1,
+      "chars": 5,
+      "lines": 1,
+      "size": 60,
+      "vw": 7.8,
+      "font": "Jost",
+      "weight": 900,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.11,
+      "top": 108,
+      "tag": "div",
+      "kind": "heading"
+     },
+     {
+      "text": "DISPATCH",
+      "words": 1,
+      "chars": 8,
+      "lines": 1,
+      "size": 96,
+      "vw": 12.5,
+      "font": "Jost",
+      "weight": 900,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.4,
+      "top": 132,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "GET DISPATCH",
+      "words": 2,
+      "chars": 12,
+      "lines": 2,
+      "size": 48,
+      "vw": 6.3,
+      "font": "Jost",
+      "weight": 900,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.29,
+      "top": 1715,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "TRANSPARENT PRICING",
+      "words": 2,
+      "chars": 19,
+      "lines": 2,
+      "size": 30,
+      "vw": 3.9,
+      "font": "Jost",
+      "weight": 900,
+      "tracking": -0.025,
+      "leading": 1.2,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.44,
+      "top": 1715,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 5,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 2,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Jost",
+       "share": 0.81,
+       "mono": false
+      },
+      {
+       "family": "JetBrains Mono",
+       "share": 0.19,
+       "mono": true
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      12,
+      14,
+      16,
+      18,
+      24,
+      30,
+      48,
+      60,
+      96
+     ],
+     "sizeCount": 9,
+     "notLoaded": [],
+     "body": {
+      "font": "Jost",
+      "size": 16,
+      "leading": 1.63,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 8.1
+     },
+     "measureChars": 26,
+     "max": {
+      "size": 96,
+      "vw": 12.5,
+      "font": "Jost",
+      "text": "DISPATCH"
+     },
+     "monoShare": 0.19,
+     "monoProseShare": 0.12,
+     "monoFamilies": [
+      "JetBrains Mono"
+     ],
+     "monoSamples": [
+      "$ dispatch list --urgent",
+      "ID",
+      "SUMMARY",
+      "BRANCH",
+      "STATE",
+      "#104"
+     ],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.09,
+     "centerShare": 0,
+     "smallText": 1
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#090d0c",
+     "bodyBgHsl": {
+      "h": 165,
+      "s": 0.18,
+      "l": 0.04
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#131a18",
+       "top": 84,
+       "hsl": {
+        "h": 163,
+        "s": 0.16,
+        "l": 0.09
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#a2b3ad",
+       "share": 0.56
+      },
+      {
+       "color": "#edf3f0",
+       "share": 0.24
+      },
+      {
+       "color": "#b8f946",
+       "share": 0.14
+      },
+      {
+       "color": "#090d0c",
+       "share": 0.04
+      },
+      {
+       "color": "#f87171",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#b8f946",
+      "hsl": {
+       "h": 82,
+       "s": 0.94,
+       "l": 0.63
+      },
+      "fg": "#090d0c"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 1,
+     "radius": 8,
+     "height": 48,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 2,
+     "heroLabels": [
+      "INSTALL BINARY"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 17,
+     "boxRadius": 12,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 4,
+       "iconTopped": false,
+       "rounded": true,
+       "top": 1347
+      }
+     ]
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 3,
+     "fixed": false,
+     "height": 20,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "jetbrains mono",
+     "jost"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 2361,
+    "margins": {
+     "left": 56,
+     "right": 51
+    },
+    "sections": [
+     {
+      "sel": "section#demo.tile-fill.md:col-span-8",
+      "tag": "section",
+      "top": 744,
+      "height": 587,
+      "words": 67,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Live Terminal Session",
+       "size": 16,
+       "tag": "h2"
+      },
+      "left": 64,
+      "right": 304,
+      "textLeft": 64,
+      "textRight": 304,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "div.md:col-span-12.grid",
+      "tag": "div",
+      "top": 1347,
+      "height": 320,
+      "words": 71,
+      "media": 0,
+      "middle": 78,
+      "heading": {
+       "text": "Stored In Git",
+       "size": 18,
+       "tag": "h3"
+      },
+      "left": 56,
+      "right": 65,
+      "textLeft": 56,
+      "textRight": 65,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "DISPATCH",
+      "size": 96,
+      "top": 132,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 56,
+      "n": 5
+     },
+     {
+      "x": 476,
+      "n": 4
+     },
+     {
+      "x": 560,
+      "n": 3
+     },
+     {
+      "x": 80,
+      "n": 2
+     },
+     {
+      "x": 236,
+      "n": 2
+     },
+     {
+      "x": 416,
+      "n": 2
+     },
+     {
+      "x": 544,
+      "n": 1
+     },
+     {
+      "x": 596,
+      "n": 1
+     },
+     {
+      "x": 626,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 21,
+    "bodySize": 14,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 5,
+   "filled": [
+    0.84,
+    0.92,
+    0.92,
+    0.85,
+    0.7
+   ],
+   "motion": {
+    "elements": 1,
+    "css": 1,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 4026,
+     "screens": 4.8,
+     "words": 359,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 1,
+     "sections": 5,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 1,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "DISPATCH",
+     "words": 1,
+     "chars": 8,
+     "lines": 1,
+     "size": 60,
+     "vw": 15.4,
+     "font": "Jost",
+     "weight": 900,
+     "tracking": -0.025,
+     "leading": 0.9,
+     "upper": true,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.75,
+     "top": 136,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "DISPATCH",
+     "words": 1,
+     "lines": 1,
+     "size": 60,
+     "font": "Jost"
+    },
+    "headings": [
+     {
+      "text": "DISPATCH",
+      "words": 1,
+      "chars": 8,
+      "lines": 1,
+      "size": 60,
+      "vw": 15.4,
+      "font": "Jost",
+      "weight": 900,
+      "tracking": -0.025,
+      "leading": 0.9,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.75,
+      "top": 136,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "0s",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 60,
+      "vw": 15.4,
+      "font": "Jost",
+      "weight": 900,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.79,
+      "top": 584,
+      "tag": "div",
+      "kind": "heading"
+     },
+     {
+      "text": "1.8ms",
+      "words": 1,
+      "chars": 5,
+      "lines": 1,
+      "size": 60,
+      "vw": 15.4,
+      "font": "Jost",
+      "weight": 900,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.79,
+      "top": 800,
+      "tag": "div",
+      "kind": "heading"
+     },
+     {
+      "text": "WEB TRACKERS VS. DISPATCH",
+      "words": 4,
+      "chars": 25,
+      "lines": 2,
+      "size": 24,
+      "vw": 6.2,
+      "font": "Jost",
+      "weight": 700,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.79,
+      "top": 1852,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "TRANSPARENT PRICING",
+      "words": 2,
+      "chars": 19,
+      "lines": 2,
+      "size": 30,
+      "vw": 7.7,
+      "font": "Jost",
+      "weight": 900,
+      "tracking": -0.025,
+      "leading": 1.2,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.79,
+      "top": 2990,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "GET DISPATCH",
+      "words": 2,
+      "chars": 12,
+      "lines": 1,
+      "size": 36,
+      "vw": 9.2,
+      "font": "Jost",
+      "weight": 900,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.79,
+      "top": 3470,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 6,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 2,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Jost",
+       "share": 0.81,
+       "mono": false
+      },
+      {
+       "family": "JetBrains Mono",
+       "share": 0.19,
+       "mono": true
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      12,
+      14,
+      16,
+      18,
+      20,
+      24,
+      30,
+      36,
+      60
+     ],
+     "sizeCount": 9,
+     "notLoaded": [],
+     "body": {
+      "font": "Jost",
+      "size": 16,
+      "leading": 1.63,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 8.1
+     },
+     "measureChars": 29,
+     "max": {
+      "size": 60,
+      "vw": 15.4,
+      "font": "Jost",
+      "text": "DISPATCH"
+     },
+     "monoShare": 0.19,
+     "monoProseShare": 0.12,
+     "monoFamilies": [
+      "JetBrains Mono"
+     ],
+     "monoSamples": [
+      "$ dispatch list --urgent",
+      "ID",
+      "SUMMARY",
+      "BRANCH",
+      "STATE",
+      "#104"
+     ],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.09,
+     "centerShare": 0,
+     "smallText": 1
+    },
+    "eyebrows": [
+     {
+      "text": "Strictly terminal workflow",
+      "above": "1.8ms",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 14,
+      "top": 708
+     },
+     {
+      "text": "No credit card required for CLI",
+      "above": "GET DISPATCH",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 14,
+      "top": 3366
+     }
+    ],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#090d0c",
+     "bodyBgHsl": {
+      "h": 165,
+      "s": 0.18,
+      "l": 0.04
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#131a18",
+       "top": 104,
+       "hsl": {
+        "h": 163,
+        "s": 0.16,
+        "l": 0.09
+       }
+      },
+      {
+       "color": "#b8f946",
+       "top": 3446,
+       "hsl": {
+        "h": 82,
+        "s": 0.94,
+        "l": 0.63
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#a2b3ad",
+       "share": 0.56
+      },
+      {
+       "color": "#edf3f0",
+       "share": 0.24
+      },
+      {
+       "color": "#b8f946",
+       "share": 0.14
+      },
+      {
+       "color": "#090d0c",
+       "share": 0.04
+      },
+      {
+       "color": "#f87171",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#b8f946",
+      "hsl": {
+       "h": 82,
+       "s": 0.94,
+       "l": 0.63
+      },
+      "fg": "#090d0c"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 1,
+     "radius": 8,
+     "height": 48,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 2,
+     "heroLabels": [
+      "INSTALL BINARY"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 19,
+     "boxRadius": 12,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 3,
+     "fixed": false,
+     "height": 56,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "jetbrains mono",
+     "jost"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 4026,
+    "margins": {
+     "left": 40,
+     "right": 40
+    },
+    "sections": [
+     {
+      "sel": "section.tile-fill.md:col-span-7",
+      "tag": "section",
+      "top": 104,
+      "height": 440,
+      "words": 30,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "DISPATCH",
+       "size": 60,
+       "tag": "h1"
+      },
+      "left": 48,
+      "right": 51,
+      "textLeft": 48,
+      "textRight": 51,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "div.md:col-span-5.grid",
+      "tag": "div",
+      "top": 560,
+      "height": 672,
+      "words": 59,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "1.8",
+       "size": 60,
+       "tag": "div"
+      },
+      "left": 40,
+      "right": 40,
+      "textLeft": 40,
+      "textRight": 40,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#demo.tile-fill.md:col-span-8",
+      "tag": "section",
+      "top": 1248,
+      "height": 564,
+      "words": 67,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Live Terminal Session",
+       "size": 16,
+       "tag": "h2"
+      },
+      "left": 40,
+      "right": 40,
+      "textLeft": 40,
+      "textRight": 40,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section.tile-fill.md:col-span-4",
+      "tag": "section",
+      "top": 1828,
+      "height": 410,
+      "words": 43,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Web Trackers vs. Dispatch",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 40,
+      "right": 58,
+      "textLeft": 40,
+      "textRight": 58,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "div.md:col-span-12.grid",
+      "tag": "div",
+      "top": 2254,
+      "height": 696,
+      "words": 71,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Stored In Git",
+       "size": 18,
+       "tag": "h3"
+      },
+      "left": 40,
+      "right": 40,
+      "textLeft": 40,
+      "textRight": 40,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#pricing.tile-fill.md:col-span-7",
+      "tag": "section",
+      "top": 2966,
+      "height": 464,
+      "words": 40,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Transparent Pricing",
+       "size": 30,
+       "tag": "h2"
+      },
+      "left": 40,
+      "right": 54,
+      "textLeft": 40,
+      "textRight": 54,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#install.tile-fill.bg-lime",
+      "tag": "section",
+      "top": 3446,
+      "height": 396,
+      "words": 35,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Get Dispatch",
+       "size": 36,
+       "tag": "h2"
+      },
+      "left": 40,
+      "right": 42,
+      "textLeft": 40,
+      "textRight": 42,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.tile-fill.md:col-span-12",
+      "tag": "footer",
+      "top": 3858,
+      "height": 144,
+      "words": 14,
+      "media": 0,
+      "middle": 24,
+      "heading": null,
+      "left": 40,
+      "right": 48,
+      "textLeft": 40,
+      "textRight": 48,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "DISPATCH",
+      "size": 60,
+      "top": 136,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 40,
+      "n": 18
+     },
+     {
+      "x": 56,
+      "n": 3
+     }
+    ],
+    "leftBlocks": 21,
+    "bodySize": 14,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "FAIL",
+   "id": "mono",
+   "width": 1440,
+   "message": "Monospace type outside code: JetBrains Mono — e.g. \"$ dispatch list --urgent\", \"ID\", \"SUMMARY\", \"BRANCH\"",
+   "fix": "Set it in the text face. Monospace is for literal code inside <pre>/<code> only.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "few-pictures",
+   "width": 1440,
+   "message": "Only 0 picture(s) on the page (0 photographs, footage or raster images, 0 interface fragments). Drawings in SVG do not count.",
+   "fix": "Find real pictures of the subject's world with scripts/assets.mjs (photographs, archival images, maps, engravings, footage), download them to assets/ and give them room: a hero picture, one per section that has a subject, a full-width band. At least four, usually six to twelve."
+  },
+  {
+   "level": "WARN",
+   "id": "no-footage",
+   "width": 1440,
+   "message": "No video anywhere on the page.",
+   "fix": "Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject."
+  },
+  {
+   "level": "WARN",
+   "id": "small-text",
+   "width": 1440,
+   "message": "1 text block(s) under 13px.",
+   "fix": "Nothing meant to be read goes below 13px.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "ragged-edges",
+   "width": 1440,
+   "message": "Left-aligned text starts at 9 different lines (168px, 849px, 971px, 192px, 460px, 752px, 955px); the three most used hold only 57% of it.",
+   "fix": "Pick two or three anchor lines from the grid and start every heading and paragraph on one of them.",
+   "alsoAt": [
+    768
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "still-page",
+   "width": 1440,
+   "message": "Only 1 element(s) moved while the page loaded and scrolled.",
+   "fix": "Build the motion layer (SKILL.md step 9, references/motion.md): the signature move, an entrance for the parts of every section, feedback on every control, and one moving picture. Transform and opacity only, with a reduced-motion fallback."
+  },
+  {
+   "level": "FAIL",
+   "id": "eyebrow",
+   "width": 390,
+   "message": "2 eyebrow/kicker label(s) above headings: \"Strictly terminal workflow\" above \"1.8ms\"; \"No credit card required for CLI\" above \"GET DISPATCH\"",
+   "fix": "Delete them. If the label carried real information, fold it into the headline or the supporting sentence."
+  },
+  {
+   "level": "WARN",
+   "id": "side-scroll",
+   "width": 390,
+   "message": "1 row(s) scroll sideways with content past their edge.",
+   "fix": "Jurors and most visitors read a row cut at the edge as clipped, not as scrollable. Wrap it onto more lines, or end it inside the grid."
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "C:\\Users\\HP\\Desktop\\eProject\\frontend\\.taste-skill\\inspect\\desktop-fold.jpg",
+   "pages": [
+    "C:\\Users\\HP\\Desktop\\eProject\\frontend\\.taste-skill\\inspect\\desktop-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "C:\\Users\\HP\\Desktop\\eProject\\frontend\\.taste-skill\\inspect\\tablet-fold.jpg",
+   "pages": [
+    "C:\\Users\\HP\\Desktop\\eProject\\frontend\\.taste-skill\\inspect\\tablet-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "C:\\Users\\HP\\Desktop\\eProject\\frontend\\.taste-skill\\inspect\\mobile-fold.jpg",
+   "pages": [
+    "C:\\Users\\HP\\Desktop\\eProject\\frontend\\.taste-skill\\inspect\\mobile-page-01.jpg"
+   ],
+   "film": []
+  }
+ ]
+}

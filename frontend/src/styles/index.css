@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FAF7F2;
+  --foreground: #221F1C;
+  --muted: #F0EAE1;
+  --muted-foreground: #6B6256;
+  --border: #E2D9C8;
+  --card: #FFFFFF;
+  --card-foreground: #221F1C;
+  --radius: 0.375rem;
+
+  /* Classical Heritage Palette */
+  --classical-gold: #C5A059;
+  --classical-gold-dark: #8C6D37;
+  --classical-green: #1E3F2F;
+  --classical-green-dark: #142E22;
+  --classical-parchment: #F4EFE6;
+  --classical-ink: #1F1D1A;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #121110;
+    --foreground: #EAE5D9;
+    --muted: #1E1B17;
+    --muted-foreground: #A69D8F;
+    --border: #2D2720;
+    --card: #181614;
+    --card-foreground: #EAE5D9;
+
+    --classical-gold: #D4AF37;
+    --classical-gold-dark: #A9832B;
+    --classical-green: #234B38;
+    --classical-green-dark: #193829;
+    --classical-parchment: #1A1815;
+    --classical-ink: #F5F2EB;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Typography Utilities (Poppins for Display/Headings, Inter for Body/Reading) */
+.font-poppins,
+.font-cinzel {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.font-inter,
+.font-classical {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Classical Framing & Borders */
+.classical-border-double {
+  border: 3px double rgba(197, 160, 89, 0.45);
+}
+
+.classical-border-gold {
+  border: 1px solid rgba(197, 160, 89, 0.35);
+}
+
+.classical-glow {
+  box-shadow: 0 0 25px -5px rgba(197, 160, 89, 0.15);
+}
+
+.classical-card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 20px -2px rgba(34, 31, 28, 0.05);
+}
+
+/* Custom scrollbar in antique brass */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C5A059;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8C6D37;
+}
