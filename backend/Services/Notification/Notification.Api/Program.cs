@@ -1,4 +1,5 @@
 using Notification.Api.Configurations;
+using Notification.Api.Middlewares;
 using Notification.Api.Services.Implementations;
 using Notification.Api.Services.Interfaces;
 using Scalar.AspNetCore;
@@ -29,6 +30,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseRouting();
+
+// 5. Bảo vệ API nội bộ bằng Middleware kiểm tra Secret
+app.UseMiddleware<InternalSecretMiddleware>();
 
 // Map controllers
 app.MapControllers();

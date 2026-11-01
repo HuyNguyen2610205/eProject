@@ -53,6 +53,7 @@ public class AppIdentityDbContext : IdentityDbContext<ApplicationUser, Applicati
         {
             entity.Property(u => u.FullName).HasMaxLength(150);
             entity.Property(u => u.AvatarUrl).HasMaxLength(500);
+            entity.Property(u => u.Occupation).HasMaxLength(200);
         });
 
         // Configure ApplicationRole custom columns

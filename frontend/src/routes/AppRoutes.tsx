@@ -6,6 +6,8 @@ import { ProtectedRoute, GuestRoute, LoadingState } from '@/components/common'
 
 // Lazy loading cho tất cả các trang
 const HomePage = lazy(() => import('@/pages/HomePage').then((m) => ({ default: m.HomePage })))
+const CausesPage = lazy(() => import('@/pages/CausesPage').then((m) => ({ default: m.CausesPage })))
+const DonatePage = lazy(() => import('@/pages/DonatePage').then((m) => ({ default: m.DonatePage })))
 const LoginPage = lazy(() => import('@/pages/LoginPage').then((m) => ({ default: m.LoginPage })))
 const RegisterPage = lazy(() => import('@/pages/RegisterPage').then((m) => ({ default: m.RegisterPage })))
 const ForgotPasswordPage = lazy(() => import('@/pages/ForgotPasswordPage').then((m) => ({ default: m.ForgotPasswordPage })))
@@ -22,6 +24,8 @@ export function AppRoutes() {
         {/* 1. Tuyến đường công khai (PublicLayout) */}
         <Route element={<PublicLayout />}>
           <Route path={ROUTES.HOME} element={<HomePage />} />
+          <Route path={ROUTES.CAUSES} element={<CausesPage />} />
+          <Route path={ROUTES.DONATE} element={<DonatePage />} />
           <Route path={ROUTES.ERROR} element={<ErrorPage />} />
           <Route path={ROUTES.NOT_FOUND} element={<NotFoundPage />} />
         </Route>

@@ -203,10 +203,17 @@ export function RegisterPage() {
   const isSubmitting = formStatus === 'loading'
 
   return (
-    <Card className="w-full">
-      <CardHeader>
-        <CardTitle>Tạo tài khoản</CardTitle>
-        <CardDescription>Đăng ký tài khoản người dùng mới trên hệ thống eProject</CardDescription>
+    <Card className="w-full border-2 border-double border-[#C5A059] bg-[#FAF7F2] dark:bg-[#181614] shadow-2xl">
+      <CardHeader className="text-center">
+        <span className="font-poppins text-xs text-[#8C6D37] dark:text-[#C5A059] tracking-widest uppercase block mb-1">
+          ⚜ ANNO MMXXVI ⚜
+        </span>
+        <CardTitle className="font-poppins text-2xl font-bold text-[#1F1D1A] dark:text-[#F5F2EB]">
+          Đăng Ký Tài Khoản
+        </CardTitle>
+        <CardDescription className="font-inter text-base text-[#615B52] dark:text-[#AAA295]">
+          Gia nhập cộng đồng hảo tâm và đồng hành cùng Give-AID
+        </CardDescription>
       </CardHeader>
 
       <form onSubmit={handleSubmit} noValidate>
@@ -214,8 +221,8 @@ export function RegisterPage() {
           {/* Thông báo lỗi chung (kết nối mạng hoặc lỗi server) */}
           {fieldErrors.general && (
             <Alert variant="destructive" role="alert">
-              <AlertTitle>Đăng ký chưa thành công</AlertTitle>
-              <AlertDescription>{fieldErrors.general}</AlertDescription>
+              <AlertTitle className="font-poppins text-xs font-semibold">Đăng ký chưa thành công</AlertTitle>
+              <AlertDescription className="font-inter text-sm">{fieldErrors.general}</AlertDescription>
             </Alert>
           )}
 
@@ -238,13 +245,14 @@ export function RegisterPage() {
                 }
               }}
               disabled={isSubmitting}
+              className="border-[#DCD1BA] dark:border-[#383126] bg-white dark:bg-[#121110] focus:border-[#C5A059]"
               required
             />
           </FormField>
 
           <FormField
             id="email"
-            label="Email"
+            label="Địa chỉ Email"
             error={fieldErrors.email}
             required
           >
@@ -262,6 +270,7 @@ export function RegisterPage() {
                 }
               }}
               disabled={isSubmitting}
+              className="border-[#DCD1BA] dark:border-[#383126] bg-white dark:bg-[#121110] focus:border-[#C5A059]"
               required
             />
           </FormField>
@@ -292,6 +301,7 @@ export function RegisterPage() {
               disabled={isSubmitting}
               showPasswordLabel="Hiện mật khẩu"
               hidePasswordLabel="Ẩn mật khẩu"
+              className="border-[#DCD1BA] dark:border-[#383126] bg-white dark:bg-[#121110] focus:border-[#C5A059]"
               required
             />
           </FormField>
@@ -317,19 +327,24 @@ export function RegisterPage() {
               disabled={isSubmitting}
               showPasswordLabel="Hiện mật khẩu xác nhận"
               hidePasswordLabel="Ẩn mật khẩu xác nhận"
+              className="border-[#DCD1BA] dark:border-[#383126] bg-white dark:bg-[#121110] focus:border-[#C5A059]"
               required
             />
           </FormField>
         </CardContent>
 
-        <CardFooter className="flex flex-col space-y-3">
-          <Button type="submit" className="w-full cursor-pointer" disabled={isSubmitting}>
-            {isSubmitting ? 'Đang khởi tạo tài khoản...' : 'Đăng ký'}
+        <CardFooter className="flex flex-col space-y-4 font-poppins">
+          <Button
+            type="submit"
+            className="w-full py-3.5 bg-[#1E3F2F] hover:bg-[#142E22] text-[#FAF7F2] font-bold text-xs uppercase tracking-widest border border-[#C5A059] shadow-md cursor-pointer"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'Đang khởi tạo tài khoản...' : 'Đăng ký tài khoản'}
           </Button>
 
-          <p className="text-center text-xs text-zinc-500">
+          <p className="text-center text-xs text-[#6B6256] dark:text-[#A69D8F] font-inter">
             Đã có tài khoản?{' '}
-            <Link to={ROUTES.LOGIN} className="font-semibold text-zinc-900 hover:underline dark:text-zinc-100">
+            <Link to={ROUTES.LOGIN} className="font-bold text-[#8C6D37] dark:text-[#C5A059] hover:underline font-poppins">
               Đăng nhập
             </Link>
           </p>

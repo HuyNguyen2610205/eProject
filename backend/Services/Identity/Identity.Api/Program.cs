@@ -116,6 +116,7 @@ builder.Services.AddHttpClient<INotificationClient, NotificationClient>(client =
 {
     client.BaseAddress = new Uri(notificationServiceUrl.TrimEnd('/') + "/");
     client.Timeout = TimeSpan.FromSeconds(10);
+    client.DefaultRequestHeaders.Add("X-Internal-Secret", "eProject_Internal_Secret_Key_2026_Secure!");
 });
 
 // 5. Cấu hình Controllers & OpenAPI & Chuẩn hóa lỗi Validation

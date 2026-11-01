@@ -1,4 +1,6 @@
 export * from './HomePage'
+export * from './CausesPage'
+export * from './DonatePage'
 export * from './LoginPage'
 export * from './RegisterPage'
 export * from './ForgotPasswordPage'

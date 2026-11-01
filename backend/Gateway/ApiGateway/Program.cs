@@ -71,6 +71,7 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AuthenticatedUser", policy => policy.RequireAuthenticatedUser());
+    options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
 });
 
 // 3. Cấu hình YARP Reverse Proxy với Request Transforms (Mô hình 1: Gắn Header nội bộ)

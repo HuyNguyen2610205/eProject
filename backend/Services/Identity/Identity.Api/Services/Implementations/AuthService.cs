@@ -55,6 +55,7 @@ public class AuthService : IAuthService
             UserName = cleanEmail,
             Email = cleanEmail,
             FullName = cleanFullName,
+            Occupation = request.Occupation?.Trim(),
             EmailConfirmed = false,
             IsActive = true,
             CreatedAt = DateTime.UtcNow
@@ -357,6 +358,7 @@ public class AuthService : IAuthService
             FullName = user.FullName ?? string.Empty,
             PhoneNumber = user.PhoneNumber,
             AvatarUrl = user.AvatarUrl,
+            Occupation = user.Occupation,
             Roles = roles.ToList(),
             Permissions = permissions,
             CreatedAt = user.CreatedAt,
@@ -382,6 +384,7 @@ public class AuthService : IAuthService
         user.FullName = request.FullName.Trim();
         user.PhoneNumber = string.IsNullOrWhiteSpace(request.PhoneNumber) ? null : request.PhoneNumber.Trim();
         user.AvatarUrl = string.IsNullOrWhiteSpace(request.AvatarUrl) ? null : request.AvatarUrl.Trim();
+        user.Occupation = string.IsNullOrWhiteSpace(request.Occupation) ? null : request.Occupation.Trim();
         user.UpdatedAt = DateTime.UtcNow;
 
         var result = await _userManager.UpdateAsync(user);
@@ -405,6 +408,7 @@ public class AuthService : IAuthService
             FullName = user.FullName ?? string.Empty,
             PhoneNumber = user.PhoneNumber,
             AvatarUrl = user.AvatarUrl,
+            Occupation = user.Occupation,
             Roles = roles.ToList(),
             Permissions = permissions,
             CreatedAt = user.CreatedAt,

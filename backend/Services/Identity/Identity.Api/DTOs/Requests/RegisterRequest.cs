@@ -18,6 +18,9 @@ public class RegisterRequest : IValidatableObject
 
     public string? ConfirmPassword { get; set; }
 
+    [MaxLength(200, ErrorMessage = "Nghề nghiệp không vượt quá 200 ký tự")]
+    public string? Occupation { get; set; }
+
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
         if (!string.IsNullOrEmpty(ConfirmPassword) && !string.Equals(Password, ConfirmPassword, StringComparison.Ordinal))

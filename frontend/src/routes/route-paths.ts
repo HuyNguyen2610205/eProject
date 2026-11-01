@@ -1,5 +1,7 @@
 export const ROUTES = {
   HOME: '/',
+  CAUSES: '/causes',
+  DONATE: '/donate',
   LOGIN: '/login',
   REGISTER: '/register',
   FORGOT_PASSWORD: '/forgot-password',

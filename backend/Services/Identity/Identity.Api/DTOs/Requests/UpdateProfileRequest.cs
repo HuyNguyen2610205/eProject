@@ -15,4 +15,7 @@ public class UpdateProfileRequest
     [Url(ErrorMessage = "Đường dẫn ảnh đại diện không đúng định dạng URL")]
     [MaxLength(500, ErrorMessage = "Đường dẫn ảnh đại diện không vượt quá 500 ký tự")]
     public string? AvatarUrl { get; set; }
+
+    [MaxLength(200, ErrorMessage = "Nghề nghiệp không vượt quá 200 ký tự")]
+    public string? Occupation { get; set; }
 }

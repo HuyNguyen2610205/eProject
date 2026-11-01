@@ -73,10 +73,17 @@ export function LoginPage() {
   }
 
   return (
-    <Card className="w-full">
-      <CardHeader>
-        <CardTitle>Đăng nhập</CardTitle>
-        <CardDescription>Nhập thông tin xác thực để truy cập vào hệ thống</CardDescription>
+    <Card className="w-full border-2 border-double border-[#C5A059] bg-[#FAF7F2] dark:bg-[#181614] shadow-2xl">
+      <CardHeader className="text-center">
+        <span className="font-poppins text-xs text-[#8C6D37] dark:text-[#C5A059] tracking-widest uppercase block mb-1">
+          ⚜ ANNO MMXXVI ⚜
+        </span>
+        <CardTitle className="font-poppins text-2xl font-bold text-[#1F1D1A] dark:text-[#F5F2EB]">
+          Đăng Nhập Tài Khoản
+        </CardTitle>
+        <CardDescription className="font-inter text-base text-[#615B52] dark:text-[#AAA295]">
+          Nhập thông tin xác thực để truy cập cổng thiện nguyện Give-AID
+        </CardDescription>
       </CardHeader>
 
       <form onSubmit={handleSubmit}>
@@ -84,18 +91,18 @@ export function LoginPage() {
           {/* Thông báo thành công từ luồng đăng ký hoặc tác vụ khác */}
           {successMessage && !errorMessage && (
             <Alert variant="success" role="status">
-              <AlertDescription>{successMessage}</AlertDescription>
+              <AlertDescription className="font-inter text-sm">{successMessage}</AlertDescription>
             </Alert>
           )}
 
           {/* Thông báo lỗi đăng nhập */}
           {errorMessage && (
             <Alert variant="destructive" role="alert">
-              <AlertDescription>{errorMessage}</AlertDescription>
+              <AlertDescription className="font-inter text-sm">{errorMessage}</AlertDescription>
             </Alert>
           )}
 
-          <FormField id="email" label="Email" required>
+          <FormField id="email" label="Địa chỉ Email" required>
             <Input
               id="email"
               type="email"
@@ -107,6 +114,7 @@ export function LoginPage() {
                 if (errorMessage) setErrorMessage(null)
               }}
               disabled={isSubmitting}
+              className="border-[#DCD1BA] dark:border-[#383126] bg-white dark:bg-[#121110] focus:border-[#C5A059]"
               required
             />
           </FormField>
@@ -125,26 +133,31 @@ export function LoginPage() {
               disabled={isSubmitting}
               showPasswordLabel="Hiện mật khẩu"
               hidePasswordLabel="Ẩn mật khẩu"
+              className="border-[#DCD1BA] dark:border-[#383126] bg-white dark:bg-[#121110] focus:border-[#C5A059]"
               required
             />
           </FormField>
 
-          <div className="flex justify-end">
-            <Link to={ROUTES.FORGOT_PASSWORD} className="text-xs text-zinc-600 hover:underline dark:text-zinc-400">
+          <div className="flex justify-end font-poppins">
+            <Link to={ROUTES.FORGOT_PASSWORD} className="text-xs text-[#8C6D37] dark:text-[#C5A059] hover:underline">
               Quên mật khẩu?
             </Link>
           </div>
         </CardContent>
 
-        <CardFooter className="flex flex-col space-y-3">
-          <Button type="submit" className="w-full" disabled={isSubmitting}>
+        <CardFooter className="flex flex-col space-y-4 font-poppins">
+          <Button
+            type="submit"
+            className="w-full py-3 bg-[#1E3F2F] hover:bg-[#142E22] text-[#FAF7F2] font-bold text-xs uppercase tracking-widest border border-[#C5A059] shadow-md"
+            disabled={isSubmitting}
+          >
             {isSubmitting ? 'Đang xác thực...' : 'Đăng nhập'}
           </Button>
 
-          <p className="text-center text-xs text-zinc-500">
+          <p className="text-center text-xs text-[#6B6256] dark:text-[#A69D8F] font-inter">
             Chưa có tài khoản?{' '}
-            <Link to={ROUTES.REGISTER} className="font-semibold text-zinc-900 hover:underline dark:text-zinc-100">
-              Đăng ký
+            <Link to={ROUTES.REGISTER} className="font-bold text-[#8C6D37] dark:text-[#C5A059] hover:underline font-poppins">
+              Đăng ký ngay
             </Link>
           </p>
         </CardFooter>

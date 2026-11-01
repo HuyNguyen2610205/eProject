@@ -5,8 +5,6 @@ import { AppHeader } from '@/components/common/AppHeader'
 import { cn } from '@/utils/cn'
 import { ROUTES } from '@/routes/route-paths'
 
-const currentYear = new Date().getFullYear()
-
 export function AppLayout() {
   const location = useLocation()
 
@@ -16,7 +14,7 @@ export function AppLayout() {
   ]
 
   return (
-    <div className="flex min-h-screen flex-col bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-50">
+    <div className="flex min-h-screen flex-col bg-[#FAF7F2] text-[#221F1C] dark:bg-[#121110] dark:text-[#EAE5D9] transition-colors duration-300 font-inter">
       {/* Top Header đồng bộ dùng chung */}
       <AppHeader />
 
@@ -28,7 +26,7 @@ export function AppLayout() {
       </main>
 
       {/* Mobile Bottom Navigation */}
-      <nav className="md:hidden fixed bottom-0 left-0 z-40 w-full border-t border-zinc-200 bg-white/95 backdrop-blur dark:border-zinc-800 dark:bg-zinc-900/95 py-1 px-2 shadow-sm">
+      <nav className="md:hidden fixed bottom-0 left-0 z-40 w-full border-t border-[#E2D9C8] bg-[#FAF7F2]/95 backdrop-blur dark:border-[#2D2720] dark:bg-[#141210]/95 py-1 px-2 shadow-sm font-poppins">
         <div className="grid grid-cols-2 gap-1">
           {navItems.map((item) => {
             const Icon = item.icon
@@ -38,10 +36,10 @@ export function AppLayout() {
                 key={item.href}
                 to={item.href}
                 className={cn(
-                  'flex flex-col items-center justify-center py-1.5 text-[10px] font-medium transition-colors rounded',
+                  'flex flex-col items-center justify-center py-1.5 text-[10px] font-semibold transition-colors rounded',
                   isActive
-                    ? 'text-zinc-900 dark:text-zinc-50 font-bold'
-                    : 'text-zinc-500 dark:text-zinc-400'
+                    ? 'text-[#8C6D37] dark:text-[#C5A059] font-bold'
+                    : 'text-[#6B6256] dark:text-[#A69D8F]'
                 )}
               >
                 <Icon className="h-4 w-4 mb-0.5" />
@@ -53,9 +51,9 @@ export function AppLayout() {
       </nav>
 
       {/* Footer */}
-      <footer className="hidden md:block border-t border-zinc-200 bg-white py-4 text-center text-xs text-zinc-500 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400">
+      <footer className="hidden md:block border-t border-[#E2D9C8] bg-[#F4EFE6] py-4 text-center text-xs font-poppins text-[#8C6D37] dark:border-[#2D2720] dark:bg-[#181614] dark:text-[#C5A059]">
         <Container>
-          <span>&copy; {currentYear} eProject Client Portal • Đã kết nối hệ thống Identity</span>
+          <span>⚜ &copy; MMXXVI GIVE-AID NGO • NỀN TẢNG BẢO TRỢ & KẾT NỐI DI SẢN ⚜</span>
         </Container>
       </footer>
     </div>
